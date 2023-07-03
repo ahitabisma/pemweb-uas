@@ -3,12 +3,12 @@
 @section('content')
     <div class="row">
         <div class="col">
-            <h1 class="text-center">Kategori Surat</h1>
+            <h1 class="text-center">Pengirim Surat</h1>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <a href="/kategori/create">
+            <a href="/pengirim/create">
                 <button class="btn btn-primary mt-4">Insert</button>
             </a>
         </div>
@@ -23,23 +23,31 @@
             <table id="example" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nama Kategori</th>
+                        <th>No</th>
+                        <th>Nama Pengirim</th>
+                        <th>Alamat Pengirim</th>
+                        <th>Telepon Pengirim</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($kategoris as $kategori)
+                    @foreach ($pengirims as $pengirim)
                         <tr>
                             <td>
-                                <p>{{ $kategori->id }}</p>
+                                <p>{{ $pengirim->id }}</p>
                             </td>
                             <td>
-                                <p>{{ $kategori->nama_kategori }}</p>
+                                <p>{{ $pengirim->nama_pengirim }}</p>
                             </td>
                             <td>
-                                <a href="/kategori/edit/{{ $kategori->id }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <form action="/kategori/destroy/{{ $kategori->id }}" method="post" class="d-inline">
+                                <p>{{ $pengirim->alamat_pengirim }}</p>
+                            </td>
+                            <td>
+                                <p>{{ $pengirim->telepon_pengirim }}</p>
+                            </td>
+                            <td>
+                                <a href="/pengirim/edit/{{ $pengirim->id }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <form action="/pengirim/destroy/{{ $pengirim->id }}" method="post" class="d-inline">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="border-0" onclick="return confirm('Hapus data?')"><i

@@ -24,7 +24,10 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title' => 'Tambah Kategori',
+        ];
+        return view('kategori.create', $data);
     }
 
     /**
@@ -32,7 +35,14 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "nama_kategori" => "required",
+        ]);
+
+        Kategori::create([
+            "nama_kategori" => $request->nama_kategori,
+        ]);
+        return redirect('/kategori')->with('success', 'Kategori berhasil ditambah!');
     }
 
     /**
@@ -48,15 +58,27 @@ class KategoriController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = [
+            'title' => 'Edit Kategori',
+            'kategori' => Kategori::findOrFail($id),
+        ];
+        return view('kategori.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Kategori $kategori)
     {
-        //
+        $request->validate([
+            "nama_kategori" => "required",
+        ]);
+
+        $kategori->update($request->all());
+
+        // dd($surat);
+
+        return redirect('/kategori')->with('success', 'Kategori berhasil diedit!');
     }
 
     /**
@@ -64,6 +86,10 @@ class KategoriController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $kategoris = Kategori::findOrFail($id);
+
+        $kategoris->delete();
+
+        return redirect()->back()->with('success', 'Kategori berhasil dihapus');
     }
 }

@@ -103,6 +103,8 @@ class SuratController extends Controller
 
         $surat->update($request->all());
 
+        // dd($surat);
+
         return redirect('/')->with('success', 'Surat berhasil diedit!');
     }
 
