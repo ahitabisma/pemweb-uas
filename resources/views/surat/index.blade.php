@@ -49,13 +49,13 @@
                                 <p>{{ $surat->isi }}</p>
                             </td>
                             <td>
-                                <p>{{ $surat->pengirim_id }}</p>
+                                <p>{{ $surat->pengirim->nama_pengirim }}</p>
                             </td>
                             <td>
-                                <p>{{ $surat->penerima_id }}</p>
+                                <p>{{ $surat->penerima->nama_penerima }}</p>
                             </td>
                             <td>
-                                <p>{{ $surat->kategori_id }}</p>
+                                <p>{{ $surat->kategori->nama_kategori }}</p>
                             </td>
                             <td>
                                 {{-- <a href="/surats/{{ $surat->id }}"><i class="fa-solid fa-eye"></i></a> --}}
